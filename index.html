@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labyrinth Trail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <span class="eyebrow">Trace the route</span>
+      <h1>Labyrinth Trail</h1>
+      <p class="tagline">Press and drag from the amber square to paint a path through the corridors. Check your trail any time — off-route cells light up coral so you can retrace your steps.</p>
+    </header>
+
+    <div class="controls">
+      <div class="controls-group">
+        <label for="difficulty" class="visually-hidden">Difficulty</label>
+        <select id="difficulty">
+          <option value="22">Tough · 22×22</option>
+          <option value="30" selected>Brutal · 30×30</option>
+          <option value="40">Nightmare · 40×40</option>
+        </select>
+        <button id="newMaze">New maze</button>
+        <button id="clearTrail">Clear trail</button>
+      </div>
+      <div class="spacer"></div>
+      <button id="checkPath" class="primary">Check path</button>
+    </div>
+
+    <div class="frame-wrap">
+      <div class="frame-inner" id="frameInner">
+        <canvas id="maze" tabindex="0" role="img" aria-label="Maze grid. Click and drag from the start square to the finish square to paint your path."></canvas>
+        <div class="win-banner" id="winBanner">
+          <div class="win-card">
+            <div class="mark">✺</div>
+            <h2 id="winHeading">Path found</h2>
+            <p id="winSub">Every cell you painted matched the corridor.</p>
+            <div class="win-stats">
+              <div><span class="v" id="winTime">0:00</span><span class="k">Time</span></div>
+              <div><span class="v" id="winMoves">0</span><span class="k">Moves</span></div>
+              <div><span class="v" id="winBest">—</span><span class="k">Best</span></div>
+            </div>
+            <button id="playAgain" class="primary">New maze</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="k">Time</span>
+        <span class="v" id="statTime">0:00</span>
+      </div>
+      <div class="stat">
+        <span class="k">Moves</span>
+        <span class="v" id="statMoves">0</span>
+      </div>
+      <div class="stat">
+        <span class="k">Off-path</span>
+        <span class="v" id="statWrong">–</span>
+      </div>
+      <div class="stat">
+        <span class="k">Best</span>
+        <span class="v" id="statBest">—</span>
+      </div>
+    </div>
+
+    <div class="status" id="status" role="status" aria-live="polite">
+      <span class="dot"></span>
+      <span id="statusText">Drag from the amber square to begin.</span>
+    </div>
+
+    <div class="legend">
+      <span><span class="swatch" style="background:var(--amber)"></span> Start / your trail</span>
+      <span><span class="swatch" style="background:var(--mint)"></span> Finish / confirmed correct</span>
+      <span><span class="swatch" style="background:var(--coral)"></span> Off the true path</span>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
